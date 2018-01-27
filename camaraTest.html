@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta content="moodsic, vision, azure, api" name="keywords">
+	<meta content="Face -> Song" name="description">
+	<meta content="Moodsic" name="title">
+	
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+
+	<title>Moodsic</title>
+</head>
+  
+<body>
+	<!-- nav bar -->
+	<nav class="navbar fixed-top navbar-light bg-light">
+		<a class="navbar-brand" href="#">Mood$ic</a>
+		<span class="navbar-text" style="text-align:left">
+			powered by microsoft azure
+		</span>
+	</nav>
+
+	<br>
+	<br>
+	<br>	
+	<br>	
+
+	<div class="container">
+		<div class="row justify-content-center align-items-center">
+			<div class="col-12">
+				<p class="h2 text-md-left text-center"><b>Mood</b></p><hr><br>
+			</div>
+		    <div class="col-12 col-md-4">
+		      	<video class="float-right img-fluid" autoplay="true" id="videoElement" height="200px"></video>
+			</div>
+			
+			<div class="col-12 col-md-4">
+				<canvas class="img-thumbnail float-left img-fluid" id="canvas" width="640" height="480"></canvas>
+			</div>
+			<div class="col-12 col-md-4">
+			</div>
+			<div class="col-12 col-md-4">
+				<button class="btn btn-dark" id="snap">Snap Photo</button>
+			</div>
+			<div class="col-12 col-md-4">
+			</div>
+			<div class="col-12 col-md-4">
+			</div>
+		</div> <!-- row -->
+	    <br>
+	</div>
+
+	<!-- JavaScript -->
+	<script>
+		var video = document.getElementById("videoElement");
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		var photoBtn = document.getElementById("snap")
+
+		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+
+		if (navigator.getUserMedia) {       
+			navigator.getUserMedia({video: true}, handleVideo, videoError);
+		}
+
+		// handle video success
+		function handleVideo(stream) {
+			video.src = window.URL.createObjectURL(stream);
+		}
+
+		// handle video error
+		function videoError(e) {
+			console.log("Video Error!");
+		}
+
+		// trigger photo take
+		photoBtn.addEventListener("click", function() {
+			context.drawImage(video, 0, 0, 640, 480);
+		});
+	</script>
+</body>
+</html>
