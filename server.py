@@ -28,6 +28,7 @@ def index():
 def getPlaylist():
 	print request.form
 	primaryEmotion = list(request.form.to_dict().keys())[0]
+	
 	if (not is_authenticated):
 		authenticate()
 	
@@ -41,14 +42,14 @@ def getPlaylist():
     # return render_template('index.html', appName=name)
 
 def authenticate():
-    # username = "travrb16"
-    # token = util.prompt_for_user_token(username, 
-        # client_id='1ba453bd75d044359b41ff526bc9ba48',
-        # client_secret='8fb7cca3f3424cc3ac17911b810397cd',
-        # redirect_uri="http://localhost:5000/callback")
+    username = "beastmo_11"
+    token = util.prompt_for_user_token(username, 
+        client_id='1ba453bd75d044359b41ff526bc9ba48',
+        client_secret='8fb7cca3f3424cc3ac17911b810397cd',
+        redirect_uri="localhost:5000")
     global sp
     client_credentials_manager = SpotifyClientCredentials(client_id='1ba453bd75d044359b41ff526bc9ba48', client_secret='8fb7cca3f3424cc3ac17911b810397cd')
-    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)    
+    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager, auth=username)    
 
 def playMood(primaryMood):
     playlist = random.choice(moods_to_music[primaryMood])
