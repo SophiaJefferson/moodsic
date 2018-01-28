@@ -11,11 +11,11 @@
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
   <script type="text/javascript">
     window.onSpotifyWebPlaybackSDKReady = () => {
-  const token = 'BQCFp7Fwd8eOWRW_Z6xPqedHjYGh4cfJM1htPZeby53ZQTJ2AgSH2VFyspgHYgnDJmpQ5Yy0mzS9OdiiL0nRfrz5GCiE3-mTZ1bh1fgyu3IqGv1Ijvo5wvbMlMAaWiwjp6ZwTdKJALHbPaQWvOctka5ZF7h1krhUmll4Ag';
-  const player = new Spotify.Player({
-    name: 'Web Playback SDK Quick Start Player',
-    getOAuthToken: cb => { cb(token); }
-  });
+      const token = 'BQCFp7Fwd8eOWRW_Z6xPqedHjYGh4cfJM1htPZeby53ZQTJ2AgSH2VFyspgHYgnDJmpQ5Yy0mzS9OdiiL0nRfrz5GCiE3-mTZ1bh1fgyu3IqGv1Ijvo5wvbMlMAaWiwjp6ZwTdKJALHbPaQWvOctka5ZF7h1krhUmll4Ag';
+      const player = new Spotify.Player({
+        name: 'Web Playback SDK Quick Start Player',
+        getOAuthToken: cb => { cb(token); }
+      });
 
   // Error handling
   player.on('initialization_error', e => { console.error(e); });
@@ -35,7 +35,7 @@
   // Connect to the player!
   player.connect();
 }
-  </script>
-  <!-- We will insert our code here. -->
+</script>
+<!-- We will insert our code here. -->
 </body>
 </html>

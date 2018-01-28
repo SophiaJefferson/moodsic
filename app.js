@@ -1,13 +1,9 @@
-var apiKey = "0fb41fe10d3141f68910857a7a54304b";
-var apiUrl = "https://api.projectoxford.ai/emotion/v1.0/recognize";
-
 var video = document.getElementById("videoElement");
 var canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
 var photoBtn = $('#snap')
 var moodBtn = $('#btn-get-mood')
 var userFileBlob;
-var userFileURL;
 
 // ************************************* setup web cam ************************************* //
 
@@ -31,21 +27,24 @@ function videoError(e) {
 
 // register "snap photo" button call back
 photoBtn.click(function() {
-    context.drawImage(video, 0, 0, 640, 480)
-    userFileBlob = blobToFile(dataURItoBlob(canvas.toDataURL('image/jpeg', 1.0)), "file.jpg")
+    context.drawImage(video, 0, 0, 640, 480) // save current video frame to the canvas
+    userFileBlob = blobToFile(dataURItoBlob(canvas.toDataURL('image/jpeg', 1.0)), "file.jpg") // convert image on canvas to file blob
 });
 
 // register "get music" button call back
 moodBtn.click(function () {
-    getAzureEmotions(userFileBlob, apiUrl, apiKey);
+    getAzureEmotions(userFileBlob); // get the emotions of the image via the azure emotions API
 });
 
 // ************************************* Azure API Interaction ************************************* //
 
 /**
- *
+ * Given a file blob, runs it through the azure emotions api returns a jason object.
 **/
-function getAzureEmotions(file, apiUrl, apiKey)  {
+function getAzureEmotions(file)  {
+    var apiKey = "0fb41fe10d3141f68910857a7a54304b";
+    var apiUrl = "https://api.projectoxford.ai/emotion/v1.0/recognize";
+
     $.ajax({ // make ajax request
         url: apiUrl,
         beforeSend: function (xhrObj) {
@@ -64,7 +63,9 @@ function getAzureEmotions(file, apiUrl, apiKey)  {
     });
 }
 
-// azure success callback
+/**
+ * Given a json object "response" outputs to the web page accordingly.
+**/
 function ProcessEmotions(response)    {
     // the response is of the form [{...}] if the array has length 0, no face is detected
     if (response.length < 1) {
@@ -86,31 +87,14 @@ function ProcessEmotions(response)    {
             }
         }
 
-        if (ProcessEmotions)
-
         text += "I'm " + (maxEmotionScore * 100.0).toFixed(2) + "% sure that your primary emotion is " + maxEmotion + "."
-
-        // console.log(maxEmotion, maxEmotionScore)
-
         $("#results-window").text(text);
     }
 }
 
-[
-{"faceRectangle":
-    {"height":130,"left":302,"top":221,"width":130},
-    "scores":
-        {"anger":0.000147724684,"contempt":0.000356299279,"disgust":0.0002667001,"fear":0.000008582338,
-        "happiness":0.0000459349,"neutral":0.9933396,"sadness":0.00572407246,"surprise":0.000111103378}
-    }
-]
-
-
-
-
-
-
-
+/**
+ * Given a dataURI, returns a blob.
+**/
 function dataURItoBlob(dataURI) {
     // convert base64/URLEncoded data component to raw binary data held in a string
     var byteString;
@@ -131,6 +115,9 @@ function dataURItoBlob(dataURI) {
     return new Blob([ia], {type:mimeString});
 }
 
+/**
+ * Given a file blob, returns a file.
+**/
 function blobToFile(theBlob, fileName){
     //A Blob() is almost a File() - it's just missing the two properties below which we will add
     theBlob.lastModifiedDate = new Date();

@@ -11,7 +11,7 @@ body {
 
 
 /*tamu hacks pink:  223, 78, 120*/
-/*tamu hacks pink:  58, 162, 218*/
+/*tamu hacks blue:  58, 162, 218*/
 
 a {
 	text-decoration: none;
@@ -56,3 +56,23 @@ hr {
 .btn:hover {
 	color: black @important;
 }
+
+.footer {
+	width: 100%; 
+	height: 2em; 
+	position: fixed; 
+	bottom: 0px; 
+	text-align: right; 
+	font-size: 75%;
+}
+
+/* Medium devices (tablets, 768px and smaller) */
+@media (max-width: 768px) {
+    .footer {
+    	position: relative;
+    }
+}
+
+
+
+
