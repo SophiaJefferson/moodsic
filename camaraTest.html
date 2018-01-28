@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,6 +7,7 @@
 	<meta content="Face -> Song" name="description">
 	<meta content="Moodsic" name="title">
 	
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css">
@@ -17,9 +18,9 @@
 <body>
 	<!-- nav bar -->
 	<nav class="navbar fixed-top navbar-light bg-light">
-		<a class="navbar-brand" href="#">Mood$ic</a>
+		<a class="navbar-brand mb-0 h1" href="#"><b><h1 class="grad-text">moodsic</h1></b></a>
 		<span class="navbar-text" style="text-align:left">
-			powered by microsoft azure
+			<a href="https://azure.microsoft.com/en-us/" target="_blank">powered by microsoft azure</a>
 		</span>
 	</nav>
 
@@ -27,30 +28,56 @@
 	<br>
 	<br>	
 	<br>	
+	<br>	
+	<br>	
+	<br>	
 
+	<!-- <div class="vertical-container"> -->
 	<div class="container">
 		<div class="row justify-content-center align-items-center">
-			<div class="col-12">
-				<p class="h2 text-md-left text-center"><b>Mood</b></p><hr><br>
+			<div class="col-12 col-md-4">
+				<p class="h2 text-center"><b>mood</b></p>
+				<br>
 			</div>
-		    <div class="col-12 col-md-4">
-		      	<video class="float-right img-fluid" autoplay="true" id="videoElement" height="200px"></video>
+			<div class="col-12 col-md-4">
+				<p class="h2 text-center">
+					<b><span class="fa fa-arrow-right" aria-hidden="true"></span></b>
+				</p>
+				<br>
+			</div>
+			<div class="col-12 col-md-4">
+				<p class="h2 text-center"><b>music</b></p>
+				<br>
+			</div>
+
+
+
+		    <div class="col-12 col-md-4 order-md-1 order-1">
+		      	<video class="float-right img-fluid img-rounded img-thumbnail" autoplay="true" id="videoElement"></video>
 			</div>
 			
-			<div class="col-12 col-md-4">
+			<div class="col-12 col-md-4 order-md-2 order-3">
 				<canvas class="img-thumbnail float-left img-fluid" id="canvas" width="640" height="480"></canvas>
 			</div>
-			<div class="col-12 col-md-4">
+			<div class="col-12 col-md-4 order-md-3 order-5">
+				upload an image and we will generate a playlist for you based on your mood!
 			</div>
-			<div class="col-12 col-md-4">
-				<button class="btn btn-dark" id="snap">Snap Photo</button>
+			
+
+
+			<div class="col-12 col-md-4 order-md-4 order-2 text-center">
+				<br>
+				<button class="btn btn-tamu-pink" id="snap">Snap Photo</button><br><br>
 			</div>
-			<div class="col-12 col-md-4">
+			<div class="col-12 col-md-4 order-md-5 order-4 text-center">
+				<br>
+				<button class="btn btn-tamu-blue" id="snap">Get Music</button><br><br>
 			</div>
-			<div class="col-12 col-md-4">
+			<div class="col-12 col-md-4 order-md-6 order-6 text-center">
 			</div>
 		</div> <!-- row -->
 	    <br>
+	</div>
 	</div>
 
 	<!-- JavaScript -->
