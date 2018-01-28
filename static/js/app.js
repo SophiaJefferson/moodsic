@@ -4,6 +4,10 @@ var context = canvas.getContext('2d');
 var photoBtn = $('#snap')
 var moodBtn = $('#btn-get-mood')
 var userFileBlob;
+var userImageGenerated = false;
+
+context.fillStyle="#CCC";
+context.fillRect(0, 0, 800, 800);
 
 // ************************************* setup web cam ************************************* //
 
@@ -27,13 +31,17 @@ function videoError(e) {
 
 // register "snap photo" button call back
 photoBtn.click(function() {
+    userImageGenerated = true;
     context.drawImage(video, 0, 0, 640, 480) // save current video frame to the canvas
     userFileBlob = blobToFile(dataURItoBlob(canvas.toDataURL('image/jpeg', 1.0)), "file.jpg") // convert image on canvas to file blob
 });
 
 // register "get music" button call back
 moodBtn.click(function () {
-    getAzureEmotions(userFileBlob); // get the emotions of the image via the azure emotions API
+    if (userImageGenerated)
+        getAzureEmotions(userFileBlob); // get the emotions of the image via the azure emotions API
+    else 
+        $("#results-window").text("please \"snap\" a photo first");
 });
 
 // ************************************* Azure API Interaction ************************************* //

@@ -7,7 +7,6 @@ username = "travrb16"
 token = util.prompt_for_user_token(username, client_id='1ba453bd75d044359b41ff526bc9ba48',
 								   client_secret='8fb7cca3f3424cc3ac17911b810397cd',
 								   redirect_uri="http://localhost:8888/callback")
-
 if not token:
 	print "Can\'t get token for", username
 
