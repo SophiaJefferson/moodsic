@@ -41,15 +41,23 @@ def getPlaylist():
 # def hello(name=None):
     # return render_template('index.html', appName=name)
 
+SPOTIPY_CLIENT_ID = '1ba453bd75d044359b41ff526bc9ba48'
+SPOTIPY_CLIENT_SECRET = '8fb7cca3f3424cc3ac17911b810397cd'
+SPOTIPY_REDIRECT_URI = 'localhost:5000'
+SCOPE = 'user-library-read'
+CACHE = '.spotipyoauthcache'
+
 def authenticate():
-    username = "beastmo_11"
-    token = util.prompt_for_user_token(username, 
-        client_id='1ba453bd75d044359b41ff526bc9ba48',
-        client_secret='8fb7cca3f3424cc3ac17911b810397cd',
-        redirect_uri="localhost:5000")
+    username = "travrb16"
+    sp_oauth = oauth2.SpotifyOAuth(SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, SPOTIPY_REDIRECT_URI, scope=SCOPE,
+                                   cache_path=CACHE)
+    token_info = sp_oauth.get_cached_token()
+    if token_info:
+        print "Found cached token!"
+        token = token_info['access_token']
     global sp
     client_credentials_manager = SpotifyClientCredentials(client_id='1ba453bd75d044359b41ff526bc9ba48', client_secret='8fb7cca3f3424cc3ac17911b810397cd')
-    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager, auth=username)    
+    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager, auth=token)
 
 def playMood(primaryMood):
     playlist = random.choice(moods_to_music[primaryMood])
