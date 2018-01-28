@@ -6,9 +6,6 @@ var moodBtn = $('#btn-get-mood')
 var userFileBlob;
 var userImageGenerated = false;
 
-// var placeholderFile = new Image()
-// placeholderFile.src = "imgs/placeholder.png"
-// context.drawImage(placeholderFile, 0, 0, 640, 480)
 context.fillStyle="#CCC";
 context.fillRect(0, 0, 800, 800);
 
