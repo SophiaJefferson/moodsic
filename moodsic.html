@@ -7,6 +7,8 @@
 	<meta content="Face -> Song" name="description">
 	<meta content="Moodsic" name="title">
 	
+	<!-- jquery -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
@@ -19,7 +21,7 @@
 	<!-- nav bar -->
 	<nav class="navbar fixed-top navbar-light bg-light">
 		<a class="navbar-brand mb-0 h1" href="#"><b><h1 class="grad-text">moodsic</h1></b></a>
-		<span class="navbar-text" style="text-align:left">
+		<span class="navbar-text">
 			<a href="https://azure.microsoft.com/en-us/" target="_blank">powered by microsoft azure</a>
 		</span>
 	</nav>
@@ -59,7 +61,7 @@
 			<div class="col-12 col-md-4 order-md-2 order-3">
 				<canvas class="img-thumbnail float-left img-fluid" id="canvas" width="640" height="480"></canvas>
 			</div>
-			<div class="col-12 col-md-4 order-md-3 order-5">
+			<div class="col-12 col-md-4 order-md-3 order-5" id="results-window">
 				upload an image and we will generate a playlist for you based on your mood!
 			</div>
 			
@@ -71,42 +73,19 @@
 			</div>
 			<div class="col-12 col-md-4 order-md-5 order-4 text-center">
 				<br>
-				<button class="btn btn-tamu-blue" id="snap">Get Music</button><br><br>
+				<button class="btn btn-tamu-blue" id="btn-get-mood">Get Music</button><br><br>
 			</div>
 			<div class="col-12 col-md-4 order-md-6 order-6 text-center">
 			</div>
 		</div> <!-- row -->
 	    <br>
 	</div>
+
+	<div style="width:100%; height:2em; position:fixed; bottom:0px; text-align: right; font-size: 75%;">
+		<p>created for TAMU hacks 2018 by Sophia Jefferson, Travis Benedict and Peter Dulworth &nbsp;</p>
 	</div>
 
-	<!-- JavaScript -->
-	<script>
-		var video = document.getElementById("videoElement");
-		var canvas = document.getElementById('canvas');
-		var context = canvas.getContext('2d');
-		var photoBtn = document.getElementById("snap")
-
-		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
-
-		if (navigator.getUserMedia) {       
-			navigator.getUserMedia({video: true}, handleVideo, videoError);
-		}
-
-		// handle video success
-		function handleVideo(stream) {
-			video.src = window.URL.createObjectURL(stream);
-		}
-
-		// handle video error
-		function videoError(e) {
-			console.log("Video Error!");
-		}
-
-		// trigger photo take
-		photoBtn.addEventListener("click", function() {
-			context.drawImage(video, 0, 0, 640, 480);
-		});
-	</script>
+	<!-- Main JavaScript -->
+	<script src="app.js"></script>
 </body>
 </html>

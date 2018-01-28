@@ -3,7 +3,7 @@ body {
 	color:white;
 }
 
-#container {
+.container {
     margin: 0px auto;
     width: 100%;
     height: 100%;
@@ -51,4 +51,8 @@ hr {
   color:transparent;
   -webkit-background-clip: text;
   background-clip: text;
+}
+
+.btn:hover {
+	color: black @important;
 }
