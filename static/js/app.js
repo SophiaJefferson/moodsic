@@ -6,7 +6,7 @@ var moodBtn = $('#btn-get-mood')
 var userFileBlob;
 var userImageGenerated = false;
 
-context.fillStyle="#CCC";
+context.fillStyle = "#CCC";
 context.fillRect(0, 0, 800, 800);
 
 // ************************************* setup web cam ************************************* //
@@ -77,7 +77,7 @@ function getAzureEmotions(file)  {
 function ProcessEmotions(response)    {
     // the response is of the form [{...}] if the array has length 0, no face is detected
     if (response.length < 1) {
-        $("#results-window").text("Yo, thats not a face! bIshhhhh");    
+        $("#results-window").text("Yo, thats not a face!");    
     } else {
         // otherwise, a face was detected and display results for now
         var jsonObj = response[0]
@@ -97,7 +97,25 @@ function ProcessEmotions(response)    {
 
         text += "I'm " + (maxEmotionScore * 100.0).toFixed(2) + "% sure that your primary emotion is " + maxEmotion + "."
         $("#results-window").text(text);
+
+        console.log("maxEmotion", maxEmotion)
+
+        getPlaylist(maxEmotion)
     }
+}
+
+function getPlaylist(primaryMood) {
+    $.ajax({
+        type: "POST",
+        url: "getPlaylist",
+        data: primaryMood,
+        dataType: "html"
+    })
+    .done(function(data) {
+        console.log("HOORAY primary mood")
+        console.log(data)
+    });
+    event.preventDefault();
 }
 
 /**
