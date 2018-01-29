@@ -5,9 +5,12 @@ var photoBtn = $('#snap')
 var moodBtn = $('#btn-get-mood')
 var userFileBlob;
 var userImageGenerated = false;
+var playlistURL = "";
 
 context.fillStyle = "#CCC";
 context.fillRect(0, 0, 800, 800);
+
+console.log("TEST")
 
 // ************************************* setup web cam ************************************* //
 
@@ -96,26 +99,33 @@ function ProcessEmotions(response)    {
         }
 
         text += "I'm " + (maxEmotionScore * 100.0).toFixed(2) + "% sure that your primary emotion is " + maxEmotion + "."
+        console.log("maxEmotion", maxEmotion)
         $("#results-window").text(text);
 
-        console.log("maxEmotion", maxEmotion)
 
-        getPlaylist(maxEmotion)
     }
 }
 
 function getPlaylist(primaryMood) {
     $.ajax({
-        type: "POST",
+        method: "POST",
         url: "getPlaylist",
         data: primaryMood,
         dataType: "html"
     })
     .done(function(data) {
-        console.log("HOORAY primary mood")
-        console.log(data)
-    });
-    event.preventDefault();
+        console.log("HELLO");
+        console.log(data);
+        playlistURL = JSON.parse(data).external_urls.spotify;
+        console.log(playlistURL);
+        setTimeout(
+            function() {
+                $("#btn-playlist").attr("href", playlistURL);
+                $("#btn-playlist").text("Playlist Link");
+            }, 1000);
+        return playlistURL;
+    }); 
+    // event.preventDefault();
 }
 
 /**

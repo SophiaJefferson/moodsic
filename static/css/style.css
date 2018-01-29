@@ -13,12 +13,12 @@ body {
 /*tamu hacks pink:  223, 78, 120*/
 /*tamu hacks blue:  58, 162, 218*/
 
-a {
+.az {
 	text-decoration: none;
 	color: inherit;
 }
 
-a:hover {
+.az:hover {
 	text-decoration: none;
 	color: inherit;
 }

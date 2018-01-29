@@ -20,9 +20,9 @@
 <body>
 	<!-- nav bar -->
 	<nav class="navbar fixed-top navbar-light bg-light">
-		<a class="navbar-brand mb-0 h1" href="#"><b><h1 class="grad-text">moodsic</h1></b></a>
+		<a class="navbar-brand mb-0 h1 az" href="#"><b><h1 class="grad-text">moodsic</h1></b></a>
 		<span class="navbar-text">
-			<a href="https://azure.microsoft.com/en-us/" target="_blank">powered by microsoft azure</a>
+			<a href="https://azure.microsoft.com/en-us/" class="az" target="_blank">powered by microsoft azure</a>
 		</span>
 	</nav>
 
@@ -38,14 +38,14 @@
 	<div class="container" style="height: 100%;">
 		<div class="row justify-content-center align-items-center">
 			<div class="col-12 col-md-4">
-				<p class="h2 text-center"><b>{{ name }}</b></p>
+				<p class="h2 text-center"><b>Moods</b></p>
 				<br>
 			</div>
 			<div class="col-12 col-md-4">
 				<p class="h2 text-center"><b><span class="fa fa-arrow-right" aria-hidden="true"></span></b></p><br>
 			</div>
 			<div class="col-12 col-md-4">
-				<p class="h2 text-center"><b>music</b></p>
+				<p class="h2 text-center"><b>Music</b></p>
 				<br>
 			</div>
 
@@ -57,8 +57,9 @@
 			<div class="col-12 col-md-4 order-md-2 order-3">
 				<canvas class="img-thumbnail float-left img-fluid" id="canvas" width="640" height="480"></canvas>
 			</div>
-			<div class="col-12 col-md-4 order-md-3 order-5" id="results-window">
-				upload an image and we will generate a playlist for you based on your mood!
+			<div class="col-12 col-md-4 order-md-3 order-5 text-center">
+				<p id="results-window">upload an image and we will generate a playlist for you based on your mood!</p>
+				<a class="" href="" id="btn-playlist" target="_blank" style="">Playlist</a>
 			</div>
 			
 

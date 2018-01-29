@@ -78,7 +78,6 @@ def playMood(primaryMood):
     for term in search:
         if term['name'] == playlist:
             moodsic_url = term['external_urls']
-            print moodsic_url
             break
 
     return term
