@@ -26,11 +26,13 @@ sp_oauth = oauth2.SpotifyOAuth(SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, SPOTIPY
 
 @app.route('/')
 def index():
+    print 'GET INDEX'
     return render_template('index.html')
 
 # given primary mood returns playlist
 @app.route('/getPlaylist', methods = ['POST'])
 def getPlaylist():
+    print 'GET PLAYLIST'
     if (not authorized):
         authorize()
 

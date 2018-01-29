@@ -10,8 +10,6 @@ var playlistURL = "";
 context.fillStyle = "#CCC";
 context.fillRect(0, 0, 800, 800);
 
-console.log("TEST")
-
 // ************************************* setup web cam ************************************* //
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
@@ -101,31 +99,18 @@ function ProcessEmotions(response)    {
         text += "I'm " + (maxEmotionScore * 100.0).toFixed(2) + "% sure that your primary emotion is " + maxEmotion + "."
         console.log("maxEmotion", maxEmotion)
         $("#results-window").text(text);
-
-
+        getPlaylist(maxEmotion)
     }
 }
 
 function getPlaylist(primaryMood) {
-    $.ajax({
-        method: "POST",
-        url: "getPlaylist",
-        data: primaryMood,
-        dataType: "html"
-    })
-    .done(function(data) {
-        console.log("HELLO");
-        console.log(data);
-        playlistURL = JSON.parse(data).external_urls.spotify;
-        console.log(playlistURL);
-        setTimeout(
-            function() {
-                $("#btn-playlist").attr("href", playlistURL);
-                $("#btn-playlist").text("Playlist Link");
-            }, 1000);
-        return playlistURL;
-    }); 
-    // event.preventDefault();
+    $.post("/getPlaylist", primaryMood, function(data, status, xhr){
+        playlistURL = data.external_urls.spotify;
+            $("#btn-playlist").attr("href", playlistURL);
+            $("#btn-playlist").text("PLAYLIST LINK");
+            $("#playlist-link").css("display", "block");
+    });
+    event.preventDefault();
 }
 
 /**
